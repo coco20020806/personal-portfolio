@@ -11,7 +11,7 @@ export function ThoughtsAccordion({ children }: { children: ReactNode }) {
 
     const onToggle = (event: Event) => {
       const card = event.target;
-      if (!(card instanceof HTMLDetailsElement) || !card.open) return;
+      if (!(card instanceof HTMLDetailsElement) || !card.open || !card.classList.contains("thought-card")) return;
 
       stack.querySelectorAll("details[open]").forEach((other) => {
         if (other !== card) other.removeAttribute("open");

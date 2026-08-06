@@ -8,7 +8,7 @@ const flows = [
 export default function NikkiCodeCaseStudy() {
   return (
     <main className="nikki-case">
-      <nav className="case-nav"><a className="nikki-action nikki-back" href="/">← Back to portfolio</a><span>NikkiCode / Independent product</span></nav>
+      <nav className="case-nav"><a className="nikki-action nikki-back" href="/#work">← Back to portfolio</a><span>NikkiCode / Independent product</span></nav>
 
       <section className="nikki-hero">
         <div className="nikki-hero-copy">
@@ -30,7 +30,7 @@ export default function NikkiCodeCaseStudy() {
       <section className="case-section nikki-results" id="result"><p className="case-kicker">EARLY SIGNALS / LAST 30 DAYS</p><div className="results-head"><h2>慢慢长大的<br /><em>小工具。</em></h2><p>产品于 2026.04.26 上线。以下为最近 30 天的生产环境数据。</p></div><div className="metric-grid"><div><strong>3,346</strong><span>Visitors</span><em>+61%</em></div><div><strong>4,102</strong><span>Page views</span><em>+71%</em></div><div><strong>84%</strong><span>Bounce rate</span><em>−4%</em></div></div><figure className="analytics-shot"><img src="/nikkicode-analytics.png" alt="NikkiCode 最近 30 天的访问分析：3346 位访客和 4102 次页面浏览" /><figcaption>Production analytics · Last 30 days</figcaption></figure></section>
 
       <section className="case-section nikki-role"><p className="case-kicker">MY ROLE</p><div className="role-row"><h2>From a tiny idea<br />to a <em>living product.</em></h2><div><p>独立完成产品定义、交互设计、前端开发与持续迭代；代码在 AI 协作下完成，并以真实玩家反馈作为下一轮优化的依据。</p><a href="https://www.nikkigift.top/" target="_blank" rel="noreferrer">Visit NikkiCode <b>↗</b></a></div></div></section>
-      <footer className="case-footer"><a href="/">← Return to KFC&apos;s portfolio</a><span>NikkiCode · made with care for Nikki players ♡</span></footer>
+      <footer className="case-footer"><a href="/#work">← Return to KFC&apos;s portfolio</a><span>NikkiCode · made with care for Nikki players ♡</span></footer>
     </main>
   );
 }
