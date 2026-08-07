@@ -1,3 +1,122 @@
-const notes = [["大模型不是‘什么都知道’的脑", "它从大量数据中学习模式，再根据上下文生成结果；回答流畅不等于事实正确。"], ["ChatGPT、Gemini、豆包不是同一层概念", "它们是面向用户的产品／服务；背后可接入不同版本、不同能力的大模型。"], ["多模态不是所有 LLM 的默认能力", "能读图、听音频或看视频，取决于具体模型与产品是否接入相应能力。"], ["Agent 不只是 LLM + 一层‘外壳’", "更完整地说，它由模型、上下文／状态、工具、控制流程与权限约束共同构成。"], ["灵活性与准确性不是必然反比", "开放决策通常更难预测、评估与复现；准确性仍取决于任务、工具、验证和系统设计。"]];
+import type { Metadata } from "next";
 
-export default function LlmAgentThought() { return <main className="whiteboard-page"><nav className="whiteboard-nav"><a href="/">KFC</a><a href="/#notes">← Thoughts</a></nav><header className="whiteboard-hero"><p>FIELD NOTE / 05</p><h1>从大模型到 Agent，<br /><em>一张板书讲清楚。</em></h1><span>把一次给朋友的白板讲解，整理成一个更准确、也更容易继续对话的版本。</span></header><figure className="whiteboard-figure"><img src="/thoughts/llm-agent-whiteboard.png" alt="手绘白板：LLM、Chatbot、Agent、Tools 与 Workflow 的关系图" /><figcaption>从「会生成」到「能完成任务」：能力不只来自模型，也来自系统如何组织它。</figcaption></figure><section className="whiteboard-section source-photos"><p className="board-kicker">THE ORIGINAL WHITEBOARD</p><h2>从白板上开始，<br /><em>也保留它真实的痕迹。</em></h2><div className="photo-grid"><figure><img src="/thoughts/whiteboard-photo-01.jpg" alt="原始板书照片一：大模型、Chatbot、Agent 与工具" /><figcaption>01 / LLM → Chatbot → Agent</figcaption></figure><figure><img src="/thoughts/whiteboard-photo-02.jpg" alt="原始板书照片二：Agent 与 Workflow 的取舍" /><figcaption>02 / Agent × Workflow</figcaption></figure><figure><img src="/thoughts/whiteboard-photo-03.jpg" alt="原始板书照片三：产品演进与 AI Agent" /><figcaption>03 / The longer thread</figcaption></figure></div></section><section className="whiteboard-section"><p className="board-kicker">THE SHORT VERSION</p><div className="summary-grid"><article><span>01</span><h2>LLM</h2><p>根据上下文预测并生成内容的模型。它擅长理解与表达，但不天然可靠，也没有天然行动能力。</p></article><article><span>02</span><h2>Chatbot</h2><p>把模型包装成对话体验：人自然语言输入，系统将模型输出组织成回答，也可扩展图像、语音与视频。</p></article><article><span>03</span><h2>Agent</h2><p>让模型在任务目标、上下文、权限与规则下，选择并调用工具，持续推进工作；人仍应决定边界与验收。</p></article><article><span>04</span><h2>Workflow</h2><p>把关键步骤写清楚、固定下来。对高风险、高频、要回溯的任务，通常比让 Agent 自由探索更稳。</p></article></div></section><section className="whiteboard-section board-flow"><div><p className="board-kicker">HOW TO THINK ABOUT IT</p><h2>模型负责「想」；<br />系统决定它能否<span>好好地做。</span></h2><p>工具提供检索、计算、写代码、读写表格等行动能力。Harness（运行与编排层）负责拆解目标、保存状态、管理权限，并在需要时要求人工确认。</p></div><ol><li><b>目标</b><span>明确交付物与完成标准。</span></li><li><b>上下文</b><span>给足资料、规则和业务边界。</span></li><li><b>工具</b><span>只开放完成任务所需的能力与权限。</span></li><li><b>验证</b><span>用规则、测试或人工复核来接住错误。</span></li></ol></section><section className="whiteboard-section correction-section"><p className="board-kicker">FACT CHECK / 小校准</p><h2>板书的方向是对的；<br /><em>这些地方值得说得更严谨。</em></h2><div className="correction-list">{notes.map(([title, body], i) => <article key={title}><span>0{i + 1}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></section><section className="whiteboard-ending"><p>实用的判断不是「要不要 Agent」，而是：<strong>需要多少自由度？允许多大误差？能否验证与回滚？</strong></p><a href="/#notes">回到 Thoughts ↗</a></section></main>; }
+export const metadata: Metadata = {
+  title: "AI 101 · LLM × Agent",
+  description: "从大语言模型、Chatbot 到 Agent 的五章入门课。",
+  openGraph: {
+    title: "AI 101 · LLM × Agent",
+    description: "从大语言模型、Chatbot 到 Agent 的五章入门课。",
+    images: [{ url: "/thoughts/ai101-og.png", width: 1200, height: 630 }],
+  },
+};
+
+const lessons = [
+  {
+    number: "01",
+    label: "THE ENGINE",
+    title: "AI",
+    image: "/thoughts/ai101-llm.png",
+    alt: "手绘风格的大语言模型示意图",
+    body: [
+      "日常所说的 AI，多半指由 LLM 驱动的生成式 AI。LLM 的本质是一种概率预测模型。",
+      "它阅读上下文，再一步步预测最可能接着出现的 token（可粗略理解为文字片段），所以能写、答、改与总结。",
+    ],
+    takeaway: "它只是在推测下一个 token；不等于具备人类式智能，也不保证准确。",
+  },
+  {
+    number: "02",
+    label: "THE CONVERSATION",
+    title: "Chatbot",
+    image: "/thoughts/ai101-chatbot.png",
+    alt: "手绘风格的聊天机器人示意图",
+    body: [
+      "Chatbot 是把模型变成对话产品的界面：你提问，产品把问题和必要的上下文交给模型，再把结果呈现给你。",
+      "ChatGPT、Gemini、DeepSeek、豆包都是常见例子。如今不少产品还能处理图片、语音和文件；具体能力取决于模型、版本与权限。",
+    ],
+    takeaway: "Chatbot = 让你和模型聊天。",
+  },
+  {
+    number: "03",
+    label: "FROM MODEL TO ACTION",
+    title: "Agent",
+    image: "/thoughts/ai101-agent.png",
+    alt: "手绘风格的 AI Agent 工作示意图",
+    body: [
+      "模型能回答；Agent 能在被授权的范围内做事。",
+      "它由模型、工具和你的授权共同构成：可以读取指定资料、调用工具、完成若干步骤，再把结果交给你确认。",
+    ],
+    takeaway: "它能为你做到什么，取决于你允许它访问和使用什么。",
+  },
+  {
+    number: "04",
+    label: "A USEFUL SPECIALIST",
+    title: "Coding Agent",
+    image: "/thoughts/ai101-coding-agent.png",
+    alt: "手绘风格的编程 Agent 示意图",
+    body: [
+      "过去数十年的技术积累，让电脑上的大量工作都能通过程序完成。于是，能写代码并操作电脑工具的 Agent 往往表现得很通用。",
+      "Claude Code、Codex 是代表性产品：它们可以把代码、文件、命令、表格和网页等可程序化任务，组织成一连串可执行步骤。",
+    ],
+    takeaway: "虽然叫 Coding Agent，完全可以把它当成通用任务助手来用。",
+  },
+  {
+    number: "05",
+    label: "WORKING TOGETHER",
+    title: "Collaborate",
+    image: "/thoughts/ai101-collaborate.png",
+    alt: "手绘风格的人与 AI 协作示意图",
+    body: [
+      "把 AI 当成一位聪明、但不了解你背景的协作者。它需要你先说清楚要完成什么。",
+      "给它足够的上下文、参考资料和例子；重要结论、对外内容与实际操作，由人来检查和确认。",
+    ],
+    takeaway: "好结果来自：清楚的目标、足够的上下文、共同的验收。",
+  },
+];
+
+export default function LlmAgentThought() {
+  return (
+    <main className="ai101-page">
+      <nav className="ai101-nav" aria-label="页面导航">
+        <a href="/" className="ai101-brand">KFC</a>
+        <a href="/#thoughts" className="ai101-back">← Thoughts</a>
+      </nav>
+
+      <header className="ai101-hero">
+        <p className="ai101-eyebrow">AI 101 / FIVE SHORT LESSONS</p>
+        <h1><span>从一次对话，</span><em>走到一位能工作的 AI。</em></h1>
+        <p className="ai101-intro">面向第一次系统了解 AI 与 Agent 的你。</p>
+        <div className="ai101-lesson-nav" aria-label="课程章节">
+          {lessons.map((lesson) => <a href={`#lesson-${lesson.number}`} key={lesson.number}><span>{lesson.number}</span>{lesson.title}</a>)}
+        </div>
+      </header>
+
+      <div className="ai101-thread" aria-hidden="true"><span /></div>
+
+      {lessons.map((lesson, index) => (
+        <section className={`ai101-lesson ${index % 2 ? "ai101-lesson-reverse" : ""}`} id={`lesson-${lesson.number}`} key={lesson.number}>
+          <div className="ai101-art"><img src={lesson.image} alt={lesson.alt} /></div>
+          <div className="ai101-copy">
+            <p className="ai101-index"><span>{lesson.number}</span> {lesson.label}</p>
+            <h2>{lesson.title}</h2>
+            {lesson.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {lesson.number === "01" && <a className="ai101-reference" href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noreferrer">延伸阅读：Transformer 架构 →</a>}
+            {lesson.number === "02" && <div className="ai101-products" aria-label="常见聊天机器人产品示例">
+              <span><img src="/thoughts/product-icons/chatgpt.ico" alt="" />ChatGPT</span>
+              <span><img src="/thoughts/product-icons/gemini.ico" alt="" />Gemini</span>
+              <span><img src="/thoughts/product-icons/deepseek.ico" alt="" />DeepSeek</span>
+              <span className="ai101-product-doubao"><b aria-hidden="true">豆</b>豆包</span>
+            </div>}
+            <div className="ai101-takeaway"><small>记住</small><strong>{lesson.takeaway}</strong></div>
+          </div>
+        </section>
+      ))}
+
+      <section className="ai101-recap">
+        <p className="ai101-eyebrow">ONE LINE RECAP</p>
+        <h2><span>模型负责生成，产品让你对话，</span><span>Agent 获得工具，<em>人负责边界与验收。</em></span></h2>
+      </section>
+
+      <footer className="ai101-footer">AI 101 · LLM × Agent · 2026</footer>
+    </main>
+  );
+}

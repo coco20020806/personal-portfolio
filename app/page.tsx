@@ -139,8 +139,13 @@ export default function Home() {
         <OceanFooter />
       </section>
 
+      <section className="section recommendations" id="recommendations">
+        <div className="recommendations-inner"><div><p className="eyebrow">06 / RECOMMENDATIONS</p><h2>Worth a<br /><em>look.</em></h2><p>以后会慢慢放入一些想推荐给阅读者的链接。</p></div><a className="recommendation-card" href="https://mp.weixin.qq.com/s/DrIpzHm777Zd8klcyAICBA" target="_blank" rel="noreferrer"><span>01 / READING</span><h3>从 Vibe Coding 到 AI 原生研发团队：<br />一套能落地的工程实践</h3><p>腾讯技术工程</p><b>↗</b><i className="recommendation-star">✦</i></a></div>
+        <OceanFooter />
+      </section>
+
       <footer id="contact">
-        <p className="eyebrow">06 / LET&apos;S CONNECT</p>
+        <p className="eyebrow">07 / LET&apos;S CONNECT</p>
         <h2>Let&apos;s make<br />something <em>useful.</em></h2>
         <div className="contact-links"><a href="mailto:24210690029@m.fudan.edu.cn">24210690029@m.fudan.edu.cn <b>↗</b></a><a href="https://github.com/coco20020806" target="_blank" rel="noreferrer">GitHub / coco20020806 <b>↗</b></a></div>
         <p className="footer-signoff">KFC · AI × LIFE × THOUGHTS · 2026</p>
