@@ -62,11 +62,15 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">PORTFOLIO · 2026</p>
           <div className="hero-title-row">
-            <h1>Hi!<br />I&apos;m <em className="title-name">KFC<button className="title-name-trigger" type="button" aria-describedby="title-name-note" aria-label="KFC 名称说明"><span>?</span></button><span className="title-name-note" id="title-name-note" role="tooltip">KFC 是 <strong>Kong Fei Coco</strong> 的缩写。<i className="title-spark title-spark-a" /><i className="title-spark title-spark-b" /><i className="title-spark title-spark-c" /></span></em></h1>
+            <h1 className="hero-headline">
+              <span className="hero-title-line hero-title-hi">Hi!</span>
+              <span className="hero-title-line hero-title-kfc"><span className="hero-title-im">I&apos;m</span> <em className="title-name">KFC<button className="title-name-trigger" type="button" aria-describedby="title-name-note" aria-label="KFC 名称说明"><span>?</span></button><span className="title-name-note" id="title-name-note" role="tooltip">KFC 是 <strong>Kong Fei Coco</strong> 的缩写。<i className="title-spark title-spark-a" /><i className="title-spark title-spark-b" /><i className="title-spark title-spark-c" /></span></em></span>
+              <span className="hero-title-doodles" aria-hidden="true"><i className="hero-doodle-star" /><i className="hero-doodle-dot" /><i className="hero-doodle-spark" /></span>
+            </h1>
             <div className="hero-jumps" aria-label="快速跳转">
-              <a href="#work"><span>01</span> Projects <b>↘</b><i className="spark spark-a" /><i className="spark spark-b" /><i className="spark spark-c" /></a>
-              <a href="#experience"><span>02</span> Experience <b>↘</b><i className="spark spark-a" /><i className="spark spark-b" /><i className="spark spark-c" /></a>
-              <a href="#notes"><span>03</span> Thoughts <b>↘</b><i className="spark spark-a" /><i className="spark spark-b" /><i className="spark spark-c" /></a>
+              <a href="#work"><span>01</span><HeroSeaIcon kind="projects" /><strong>Projects</strong><b>↘</b></a>
+              <a href="#experience"><span>02</span><HeroSeaIcon kind="experience" /><strong>Experience</strong><b>↘</b></a>
+              <a href="#notes"><span>03</span><HeroSeaIcon kind="thoughts" /><strong>Thoughts</strong><b>↘</b></a>
             </div>
           </div>
           <p className="hero-subtitle">ai <span>×</span> life <span>×</span> thoughts</p>
@@ -158,3 +162,4 @@ export default function Home() {
 function OceanFooter() { return <div className="ocean-footer" aria-hidden="true"><span /><span /><span /></div>; }
 import { PhotoFlip } from "./PhotoFlip";
 import { ThoughtsAccordion } from "./ThoughtsAccordion";
+import { HeroSeaIcon } from "./HeroSeaIcons";
