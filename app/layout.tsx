@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import BackToTop from "./BackToTop";
 
 export const metadata: Metadata = {
   title: "KFC — AI × Life × Thoughts",
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="zh-CN"><body>{children}</body></html>;
+  return <html lang="zh-CN"><body>{children}<BackToTop /></body></html>;
 }
