@@ -1,15 +1,33 @@
-const projects = [
+import { PhotoFlip } from "./PhotoFlip";
+import { ProjectPreview, type HomeProject } from "./ProjectPreview";
+import { ThoughtsAccordion } from "./ThoughtsAccordion";
+import { HeroSeaIcon } from "./HeroSeaIcons";
+import { FloatingChapterRail } from "./FloatingChapterRail";
+import { TravelCollections } from "./TravelCollections";
+
+const projects: HomeProject[] = [
   {
     index: "01",
     name: "CateMate",
     type: "Independent project · AI category analysis",
     status: "原型",
     statusKind: "prototype",
-    description:
-      "源于 Shopee Summer Intern 期间的真实业务场景：将自然语言提需转化为可确认、可追溯的品类分析任务，让 LLM 的理解与编排和 Python / SQL 的确定性计算在同一工作流里协作。",
+    description: "CateMate 是我在 Shopee 暑期实习中开发的品类分析 Agent 原型。",
+    meaning: "它把模糊的自然语言提需转化为可确认、可执行、可回溯的分析工作流，让 LLM 的理解与编排和 Python / SQL 的确定性计算各自承担合适的任务。",
     role: "独立设计 + 开发",
     tags: ["AI workflow", "LLM", "Python / SQL"],
     href: "/projects/catemate",
+    previewKind: "workflow",
+    previewAlt: "CateMate 分析工作流界面：自然语言需求被解析为 SG、STATIONERY、TREND、TOP SKU，并进入确认、计算与留痕步骤。",
+    previewAlign: "start",
+    cta: "View case study ↗",
+    workflow: {
+      chrome: "analysis-request / draft",
+      prompt: "帮我分析新加坡市场文具类目的近期趋势",
+      fields: ["SG", "STATIONERY", "TREND", "TOP SKU"],
+      steps: ["确认需求", "执行计算", "来源留痕"],
+      ready: "READY FOR CONFIRMATION",
+    },
   },
   {
     index: "02",
@@ -17,11 +35,17 @@ const projects = [
     type: "Multimodal beauty agent",
     status: "已上线 · 原型",
     statusKind: "live-prototype",
-    description:
-      "把一看就忘的美妆教程变为可复用的美妆知识库，需要时随取随用。",
+    description: "把一看就忘的美妆教程变为可复用的美妆知识库，需要时随取随用。",
+    meaning: "把一次性美妆视频消费，转化为能够理解、复用、微调与练习的个人美妆学习体验。",
     role: "独立开发 + 部分产品工作",
     tags: ["Multimodal", "FastAPI", "React"],
     href: "/projects/beauty-decode",
+    previewKind: "product-shot",
+    previewAlt: "每妆小解产品界面：美妆教程被拆成可跟练的步骤图示与个人知识库。",
+    previewAlign: "end",
+    previewSrc: "/beautydecode-hero-product.png",
+    cta: "Explore project ↗",
+    steps: ["视频输入", "教程拆解", "个人知识库"],
   },
   {
     index: "03",
@@ -29,30 +53,39 @@ const projects = [
     type: "Independent project · PWA",
     status: "已上线 · 完成",
     statusKind: "complete",
-    description:
-      "为暖暖系列玩家打造的游戏福利管家：聚合兑换码、提醒与兑换记录。",
+    description: "为暖暖系列玩家打造的游戏福利管家：聚合兑换码、提醒与兑换记录。",
+    meaning: "它替玩家记住容易遗漏的小事，让分散的兑换信息、到期提醒与个人记录集中在一个轻量工具中。",
     role: "独立设计 + 开发",
     tags: ["0 → 1", "PWA", "3k+ MAU"],
     href: "/projects/nikkicode",
+    previewKind: "device",
+    previewAlt: "NikkiCode 实际使用中的兑换码页面：到期提醒、一键复制与领取记录。",
+    previewAlign: "start",
+    previewSrc: "/nikkicode-live-screen.jpg",
+    cta: "Explore project ↗",
+    steps: ["到期提醒", "一键复制", "兑换记录"],
+    metric: "3k+ MAU",
   },
 ];
 
 const experiences = [
-  { date: "2026.06 — now", company: "Shopee", role: "管培暑期 · 生活品类策略与业务 AI 转型", highlights: ["负责生活品类策略及部门 AI 转型：拆解品类分析工作流，识别自动化机会，并从准确性、可审计性、标准化程度与业务判断依赖度划分 AI 与人工协同边界。", "0—1 独立开发 CateMate 品类分析 AI 原型：让 LLM 负责需求理解与编排、Python / SQL 负责固定计算，并通过人工确认节点、中间产物与数据来源留痕，支持结果复用、回溯与审计。", "围绕 5→2 的品类策略人员优化需求，搭建自动化看板、agent、skills 等，在小组内实现约 80% 的工作量自动化，并评估部门既有 AI 工具的可用性、维护性与实际效率。"] },
-  { date: "2025.07 — 2025.09", company: "欧莱雅 · 科颜氏", role: "电商与广告 · 天猫渠道", highlights: ["协助活动目标制定、拆分及核心指标追踪，支持团队基于实际销售与目标差异快速定位待改善环节。", "基于电商数据开展达人直播策略、品牌与单品机会点等专题市场研究。"] },
-  { date: "2025.04 — 2025.07", company: "小红书", role: "出海项目组 · 产品运营", highlights: ["基于社区调性、地区特性与用户增长目标，完成内容运营及专题活动从用户筛选、活动设计、发布沟通、数据自动化整理到复盘的全流程。", "“四周挑战”活动中，30% 的种子用户在激励下至少新增发布 1 条内容。", "参与竞品与市场调研、新市场合规研究及国别研究，协助产品新功能设计与后续运营。"] },
-  { date: "2024.06 — 2024.09", company: "字节跳动", role: "战略运营 · 大众消费组", highlights: ["服务中国广告销售业务，跟踪大众消费、平台电商与内容消费行业动态，制作竞媒与行业头部玩家周报 / 双周报，供业务组周会使用。", "撰写 24Q2 头部平台电商财报点评，跟踪竞品尤其是广告业务动向；在职期间，组内 2 个重点专题由竞对周报线索发掘。"] },
-  { date: "2023.02 — 2023.08", company: "华映资本", role: "消费 TMT 组 · 投资研究", highlights: ["参与消费科技、消费品牌等领域投资研究与决策支持，独立完成消费科技项目投资决策书的行业分析部分，以及农业育种行业报告（30+ 页）。", "累计撰写行业研究报告 50+ 页，涵盖市场规模、竞争格局、上市公司财务概览与可比公司分析。"] },
+  { date: "2026.06 — now", company: "Shopee", role: "管培暑期 · 生活品类策略与业务 AI 转型", highlights: ["独立承接生活品类策略日常工作，围绕卖家与品类开展趋势跟踪、经营诊断及月度复盘，为业务团队提供选品、卖家沟通与市场判断支持。", "拆解品类分析工作流，识别高频、路径稳定且适合自动化的环节，并从准确性、可审计性、标准化程度与业务判断依赖度划分 AI 与人工协同边界。", "将找数、筛选、制表等重复流程封装为脚本、模板、自动化看板与团队 Skills，形成可直接调用、持续迭代的交付体系，降低任务耗时与岗位交接成本。", "0—1 独立开发 CateMate 品类分析 AI 原型：由 LLM 负责需求理解与流程编排，Python / SQL 负责确定性计算，并通过人工确认节点、中间产物和数据来源留痕支持复用、回溯与审计。"] },
+  { date: "2025.07 — 2025.09", company: "欧莱雅 · 科颜氏", role: "电商与广告 · 天猫渠道", highlights: ["结合天猫平台特性、品牌定位与品类节奏，协助制定并拆解活动期销售目标，筛选核心追踪指标；活动执行中持续对照实际表现与目标，帮助团队快速定位待改善环节。", "基于电商数据开展专题研究，包括以达人直播策略制定为目标的市场扫描，以及品牌全局表现、单品机会点和竞争态势分析，为运营与投放判断提供支持。", "负责日常巡店并识别页面与内容优化机会；在品牌核心单品升级期间，结合前代产品的消费者痛点与核心卖点，规划并制作差异化买家秀内容，最终链接转化率高于预期。"] },
+  { date: "2025.04 — 2025.07", company: "小红书", role: "出海项目组 · 产品运营", highlights: ["面向以美国为核心市场的社区与本地生活产品，基于社区调性和地区特征完成内容审核、流量分发及 UGC 内容撰写维护，并在产品形态调整后继续支持主站新产品运营。", "围绕用户增长目标独立推进“四周挑战”：完成活动机制设计、种子用户筛选、活动发布、用户沟通、数据自动化整理与复盘；30% 的种子用户在激励下至少新增发布 1 条内容。", "从日常内容与用户运营中提炼需求，开展竞品及市场调研，推动产品新功能设计并协助迭代后的运营落地。", "参与新产品进入海外市场的合规访谈与研究，并围绕新市场进入策略开展国别研究，梳理业务痛点、市场现状与潜在机会。"] },
+  { date: "2024.06 — 2024.09", company: "字节跳动", role: "商业化战略 · 中国销售业务平台大众组", highlights: ["支持抖音集团广告销售业务，覆盖大众消费、平台电商与内容消费等行业；持续跟踪竞媒、行业头部玩家、宏观数据和投融资动态，制作周报 / 双周报供业务组周会使用。", "撰写 2024Q2 头部平台电商财报点评，重点跟踪竞对业务尤其是广告商业化动向，完成核心判断与图表交付，并同步给战略团队及平台电商业务组。", "围绕平台电商完成 5+ 项针对性案头研究，并协助开展重要海外竞对研究与访谈；在职期间，组内 2 个重点专题由竞对周报线索进一步发掘。", "覆盖小游戏、小说等内容消费赛道，完成头部公司分析与细分市场机会扫描，并承担会议纪要、数据处理和演示材料制作等日常支持。"] },
+  { date: "2023.03 — 2023.08", company: "华映资本", role: "VC 消费组 · 投资研究", highlights: ["覆盖消费品牌、消费材料、TMT 与农业育种等领域，参与项目前期研究、创始人访谈、投资判断及投后 / 募资材料支持。", "独立完成两份投资决策书的行业分析部分，涉及中国头部 SaaS 生态伙伴与发泡材料标的；分析市场规模、竞争格局、上市公司财务表现、可比公司及行业特定问题，累计撰写 50+ 页。", "独立完成 30+ 页农业育种行业报告，并围绕团队关注赛道完成 20+ 份行业 / 公司简报及 LP 大会材料，梳理行业格局、背景知识与潜在投资机会。", "参与 20+ 次项目会面并形成会议纪要，同时协助搜寻潜在标的、联系专家及创始人，参与募资报告、LP 报告的数据更新、校对与表达优化。"] },
+  { date: "2022.07 — 2022.09", company: "灼识投资咨询", role: "咨询实习生 · 投融资咨询", highlights: ["参与面向上市企业与初创公司的投融资咨询项目，协助顾问开展行业研究、建议书制作及招股书行业概览章节支持。", "参与 5+ 家公司的招股书行业概览章节撰写、翻译、数据更新与信息核对，并为初创企业咨询项目独立绘制 10+ 页建议书及行业报告。", "通过案头研究、WIND 等金融终端及 Python 爬虫搜集行业与公司数据，参与数据分析、公司估值和访谈纪要整理，为项目判断与报告交付提供基础支持。"] },
 ];
 
 export default function Home() {
   return (
     <main>
+      <FloatingChapterRail />
       <nav className="nav" aria-label="主导航">
         <a className="monogram" href="#top" aria-label="返回顶部">KFC</a>
         <div className="nav-links">
           <a href="#about">About</a>
-          <a href="#work">Work</a>
+          <a href="#work">Projects</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </div>
@@ -87,7 +120,7 @@ export default function Home() {
       <section className="section about" id="about">
         <p className="eyebrow">01 / ABOUT</p>
         <div className="about-grid">
-          <h2>Curiosity<br />leads me <em>forward.</em></h2>
+          <h2><em>Curiosity</em><br />leads me forward.</h2>
           <div className="about-copy">
             <p>Hi! 我是孔斐。目前在复旦大学管理学院攻读硕士；本科就读于上海交通大学。</p>
             <p>从消费、内容、电商、投资；从咨询、金融、互联网、快消，我积累了丰富的跨行业业务经验。现在，我持续思考：AI 能为我们的工作和生活做些什么？</p>
@@ -105,12 +138,7 @@ export default function Home() {
         </div>
         <div className="project-list">
           {projects.map((project) => (
-            <a className="project-card" key={project.name} href={project.href} target={project.href.startsWith("/") ? undefined : "_blank"} rel={project.href.startsWith("/") ? undefined : "noreferrer"}>
-              <div className="project-index">{project.index}</div>
-              <div className="project-main"><div className="project-labels"><p className="project-type">{project.type}</p><span className={`project-status ${project.statusKind}`}>{project.status}</span></div><h3>{project.name}</h3><p className="project-description">{project.description}</p><p className="project-role"><b>MY ROLE</b>{project.role}</p></div>
-              <div className="project-meta"><div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><b>↗</b></div>
-              <span className="project-doodle" aria-hidden="true"><i className="doodle-orbit" /><i className="doodle-star doodle-star-a" /><i className="doodle-star doodle-star-b" /></span>
-            </a>
+            <ProjectPreview key={project.name} project={project} />
           ))}
         </div>
         <OceanFooter />
@@ -128,9 +156,8 @@ export default function Home() {
           <details className="thought-card"><summary><span>04</span><div><p>AGENT OR WORKFLOW?</p><h3>你真的需要自建 agent 吗？</h3></div><b>＋</b></summary><article><p>Agent 也有很多种，Codex 这种当然也是 agent。但一般 AI 化转型里想象的 agent，不管具有什么能力，不变的一点是：老板期待它能自巡航。什么叫自巡航？简单来说，就是可以帮他裁员的那种。</p><p>当 AI 的能力可以分为降本与增效两方面后，对老板来说，增效是虚的，降本是真的。AI 增的效能不能转化为利润还要两说，裁掉人，下一个月利润就会涨。</p><p>很 tricky 的一件事是：对现在的 agent 能力来说，增效的意义远远大于降本。AI 能提高人效，人效提高之后提高人员报酬，这对业务同学来说是正循环。业务同学愿意因此多学习 AI，组织也提高了人效，其实是变相降低人员成本。另一方面，主打裁员会让同学们非常抵触，直接阻止组织里上下文的有效流动。不给 AI 开发同学上下文信息，会非常直接地导致 agent 变笨；不提供实际使用场景，也会在客观上阻止 agent 的迭代与发展。</p><p>更重要的是，很多上下文无法沉淀：工作习惯、老板风格，以及组织里那些玄妙的东西，很难写成文字。这是一个非常依赖经验的黑盒。一旦希望 agent 实现自循环，就意味着它必须内置理解这些黑盒的能力。世界模型还很远，这些也一样。</p><p>如果所有人都驾驶自己的 AI，一切会好很多。人负责那些难以沉淀的部分，AI 只负责它能负责的部分。总而言之，请人专门开发 agent 的效果，大概率远不如给大家上 AI 培训课。当然，只上课、不用 AI，也绝无可能学会 AI 使用；给大家一个使用 AI 的动力同样重要。</p><p>如果能接受人来驾驶，采用“自己沉淀自己的 skill”的方法最好：轻便、自由。从这个视角看，未来 2C agent 产品的终局，可能真的就是一个足够好用的 Codex。<br /><strong>Workflow 就很好用。</strong></p></article></details>
             </div>
           </section>
-          <section className="thought-standalone" aria-labelledby="standalone-thought-title">
-            <header className="thought-standalone-header"><div><p>05 / STANDALONE NOTE</p><h3 id="standalone-thought-title">一篇独立图解</h3></div><span>从基础概念出发，单独讲清楚 LLM 与 Agent。</span></header>
-          <a className="thought-board-link" href="/thoughts/llm-agent"><span>05</span><div><p>WHITEBOARD NOTE / LLM × AGENT</p><h3>从大模型到 Agent：一张板书讲清楚</h3><small>重绘图解 · 概念速读 · 事实校准</small></div><b>↗</b></a>
+          <section className="thought-standalone" aria-label="LLM 与 Agent 独立图解">
+            <a className="thought-board-link" href="/thoughts/llm-agent"><span>05</span><div><p>WHITEBOARD NOTE / LLM × AGENT</p><h3>从大模型到 Agent：一张板书讲清楚</h3><small>重绘图解 · 概念速读 · 事实校准</small></div><b>↗</b></a>
           </section>
         </ThoughtsAccordion>
         <OceanFooter />
@@ -139,14 +166,37 @@ export default function Home() {
       <section className="section journey" id="experience">
         <div className="section-heading"><p className="eyebrow">04 / EXPERIENCE</p><p>在策略、消费与技术之间，持续移动。</p></div>
         <div className="timeline">
-          {experiences.map((experience, index) => <details className="journey-card" key={experience.company}><summary><p>{experience.date}</p><h3>{experience.company}</h3><p>{experience.role}</p><b aria-hidden="true">＋</b></summary><div className="journey-detail"><span>{String(index + 1).padStart(2, "0")}</span><ul>{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></div></details>)}
+          {experiences.map((experience, index) => <details className="journey-card" key={experience.company}><summary><p>{experience.date}</p><h3>{experience.company}</h3><p>{experience.role}</p><b aria-hidden="true">＋</b></summary><div className="journey-detail"><span>{String(index + 1).padStart(2, "0")}</span><div className="journey-content"><ul>{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>{experience.company === "Shopee" && <figure className="journey-visual"><img src="/shopee-internship-workflow.png" alt="Shopee 实习工作概览：从日常品类分析中识别重复流程，将其标准化和自动化，沉淀为团队可复用的能力。" /></figure>}{experience.company === "欧莱雅 · 科颜氏" && <figure className="journey-visual"><figcaption><strong>品牌电商全景：从流量转化到利润</strong><span>Brand E-commerce Overview</span></figcaption><img src="/loreal-brand-ecommerce-overview.jpg" alt="品牌方天猫电商业务全景图，梳理从人群触达、流量承接与购买转化，到收入、成本和利润的关系。" /></figure>}</div></div></details>)}
+        </div>
+        <OceanFooter />
+      </section>
+
+      <section className="section skills-talents" id="skills">
+        <div className="skills-heading"><div><p className="eyebrow">05 / SKILLS &amp; TALENTS</p><h2>Research &amp; <em>Communicate</em></h2></div><p>研究能力、语言，以及在不同语境中理解问题的方式。</p></div>
+        <div className="skills-layout">
+          <article className="finance-skill">
+            <header><div><p>FINANCIAL RESEARCH</p><h3>曾经撰写的研究报告</h3></div><span>01</span></header>
+            <p className="skill-intro">能够结合行业格局、商业模式、成本结构与竞争优势开展研究，并将分析沉淀为结构化报告。</p>
+            <div className="report-list">
+              <a className="report-card" href="/reports/muyuan-cost-leadership" target="_blank" rel="noreferrer"><span>二级研究 · PUBLIC EQUITY</span><h4>牧原股份的成本领先优势分析</h4><p>成本结构 · 竞争优势 · 公司研究</p><b>Read report ↗</b></a>
+              <a className="report-card report-card-alt" href="/reports/consumer-tech-ic" target="_blank" rel="noreferrer"><span>一级研究 · PRIVATE MARKET</span><h4>消费科技发泡材料 IC 报告</h4><p>行业研究 · 商业判断 · 投资分析</p><b>Read report ↗</b></a>
+            </div>
+          </article>
+          <article className="language-skill">
+            <header><p>LANGUAGES</p><span>02</span></header>
+            <div className="language-list">
+              <div className="language-row"><div><small>ENGLISH</small><h3>英语</h3></div><strong>IELTS 7.5</strong><p>CET-6 600+</p></div>
+              <div className="language-row japanese"><div><small>JAPANESE</small><h3>日语</h3></div><strong>学习中</strong><p>简单交流水准</p></div>
+            </div>
+            <p className="language-note">Still learning,<br />still listening. <i>✦</i></p>
+          </article>
         </div>
         <OceanFooter />
       </section>
 
       <section className="section others" id="others">
-        <div className="others-heading"><p className="eyebrow">05 / OTHERS</p><h2>A little more<br />of <em>the world.</em></h2></div>
-        <div className="passport-row"><article className="passport-card swiss"><span className="passport-stamp">SWISS</span><p>EXCHANGE</p><h3>Switzerland</h3><strong>2023.09 — 2024.02</strong><small>半年交换 · 走进另一种日常</small><i>✦</i></article><article className="passport-card japan"><span className="passport-stamp">JAPAN</span><p>EXCHANGE</p><h3>Japan</h3><strong>2025.09 — 2026.02</strong><small>半年交换 · 继续在路上学习</small><i>✦</i></article></div>
+        <div className="others-heading"><p className="eyebrow">06 / OTHERS</p><h2>Overseas Experience</h2></div>
+        <TravelCollections />
         <div className="fun-facts"><div><p>FUN FACTS</p><h3>Not working,<br />still <em>collecting stories.</em></h3></div><div className="fact-stickers"><span className="fact-trip">solo trip<br /><b>many stamps</b></span><span className="fact-claw">claw machine<br /><b>level 2 certified</b></span><i className="fact-star">✦</i></div><p className="fun-copy">喜欢独自旅行，有很多 solo trip 的经历；<br />也拥有抓娃娃二级资格证书。</p></div>
         <OceanFooter />
       </section>
@@ -168,6 +218,3 @@ export default function Home() {
 }
 
 function OceanFooter() { return <div className="ocean-footer" aria-hidden="true"><span /><span /><span /></div>; }
-import { PhotoFlip } from "./PhotoFlip";
-import { ThoughtsAccordion } from "./ThoughtsAccordion";
-import { HeroSeaIcon } from "./HeroSeaIcons";
