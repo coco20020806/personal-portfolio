@@ -144,8 +144,16 @@ export default function Home() {
         <OceanFooter />
       </section>
 
+      <section className="section journey" id="experience">
+        <div className="section-heading"><p className="eyebrow">03 / EXPERIENCE</p><p>在策略、消费与技术之间，持续移动。</p></div>
+        <div className="timeline">
+          {experiences.map((experience, index) => <details className="journey-card" key={experience.company}><summary><p>{experience.date}</p><h3>{experience.company}</h3><p>{experience.role}</p><b aria-hidden="true">＋</b></summary><div className="journey-detail"><span>{String(index + 1).padStart(2, "0")}</span><div className="journey-content"><ul>{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>{experience.company === "Shopee" && <figure className="journey-visual"><img src="/shopee-internship-workflow.png" alt="Shopee 实习工作概览：从日常品类分析中识别重复流程，将其标准化和自动化，沉淀为团队可复用的能力。" /></figure>}{experience.company === "欧莱雅 · 科颜氏" && <figure className="journey-visual"><figcaption><strong>品牌电商全景：从流量转化到利润</strong><span>Brand E-commerce Overview</span></figcaption><img src="/loreal-brand-ecommerce-overview.jpg" alt="品牌方天猫电商业务全景图，梳理从人群触达、流量承接与购买转化，到收入、成本和利润的关系。" /></figure>}</div></div></details>)}
+        </div>
+        <OceanFooter />
+      </section>
+
       <section className="section notes" id="notes">
-        <div className="thoughts-heading"><div><p className="eyebrow">03 / THOUGHTS</p><h2>Small observations,<br /><em>still gathering.</em></h2></div><p>关于 AI、产品与真实工作的一些未完成想法。<br />Click a card to read.</p></div>
+        <div className="thoughts-heading"><div><p className="eyebrow">04 / THOUGHTS</p><h2>Small observations,<br /><em>still gathering.</em></h2></div><p>关于 AI、产品与真实工作的一些未完成想法。<br />Click a card to read.</p></div>
         <ThoughtsAccordion>
           <section className="thought-series" aria-labelledby="business-ai-series-title">
             <header className="thought-series-header"><div><p>01—04 / SERIES</p><h3 id="business-ai-series-title">业务 AI 化随想</h3></div><span>四则关于判断、落地与组织现实的连续观察。<br />Click a card to unfold.</span></header>
@@ -160,14 +168,6 @@ export default function Home() {
             <a className="thought-board-link" href="/thoughts/llm-agent"><span>05</span><div><p>WHITEBOARD NOTE / LLM × AGENT</p><h3>从大模型到 Agent：一张板书讲清楚</h3><small>重绘图解 · 概念速读 · 事实校准</small></div><b>↗</b></a>
           </section>
         </ThoughtsAccordion>
-        <OceanFooter />
-      </section>
-
-      <section className="section journey" id="experience">
-        <div className="section-heading"><p className="eyebrow">04 / EXPERIENCE</p><p>在策略、消费与技术之间，持续移动。</p></div>
-        <div className="timeline">
-          {experiences.map((experience, index) => <details className="journey-card" key={experience.company}><summary><p>{experience.date}</p><h3>{experience.company}</h3><p>{experience.role}</p><b aria-hidden="true">＋</b></summary><div className="journey-detail"><span>{String(index + 1).padStart(2, "0")}</span><div className="journey-content"><ul>{experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>{experience.company === "Shopee" && <figure className="journey-visual"><img src="/shopee-internship-workflow.png" alt="Shopee 实习工作概览：从日常品类分析中识别重复流程，将其标准化和自动化，沉淀为团队可复用的能力。" /></figure>}{experience.company === "欧莱雅 · 科颜氏" && <figure className="journey-visual"><figcaption><strong>品牌电商全景：从流量转化到利润</strong><span>Brand E-commerce Overview</span></figcaption><img src="/loreal-brand-ecommerce-overview.jpg" alt="品牌方天猫电商业务全景图，梳理从人群触达、流量承接与购买转化，到收入、成本和利润的关系。" /></figure>}</div></div></details>)}
-        </div>
         <OceanFooter />
       </section>
 

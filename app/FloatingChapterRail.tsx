@@ -5,8 +5,8 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 export const CHAPTERS = [
   { id: "about", number: "01", label: "ABOUT" },
   { id: "work", number: "02", label: "PROJECTS" },
-  { id: "notes", number: "03", label: "THOUGHTS" },
-  { id: "experience", number: "04", label: "EXPERIENCE" },
+  { id: "experience", number: "03", label: "EXPERIENCE" },
+  { id: "notes", number: "04", label: "THOUGHTS" },
   { id: "skills", number: "05", label: "SKILLS & TALENTS" },
   { id: "others", number: "06", label: "OTHERS" },
   { id: "contact", number: "07", label: "CONTACT" },
